@@ -49,6 +49,8 @@ function parseResponse(queueItem, responseBuffer) {
 }
 
 function indexRecipe(recipe) {
+  recipe.image = recipe.image.split('?')[0];
+  recipe.image = recipe.image + '?mode=crop&width=350&height=230'
   client.index({
     index: 'crawler',
     type: 'recipe',
