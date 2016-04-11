@@ -1,0 +1,28 @@
+{
+  "name": "jsday-campina-grande-2016",
+  "version": "1.0.0",
+  "description": "Código da minha palestra no JSday Campina Grande 2016",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allisson/jsday-campina-grande-2016.git"
+  },
+  "author": "Allisson Azevedo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allisson/jsday-campina-grande-2016/issues"
+  },
+  "homepage": "https://github.com/allisson/jsday-campina-grande-2016#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cheerio": "^0.20.0",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
+    "elasticsearch": "^11.0.0",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "request": "^2.70.0",
+    "serve-favicon": "^2.3.0",
+    "simplecrawler": "^0.6.2",
+    "swig": "^1.4.2"
+  }
+}
