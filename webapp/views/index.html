@@ -8,24 +8,55 @@
     <div class="page-header">
       <h1>Busque sua receita</h1>
     </div>
-    <input type="text" class="form-control input-lg" name="q" style="width:50%;">
+    <input type="text" class="form-control input-lg" name="q">
     <button class="btn btn-primary btn-lg" type="submit" value="Buscar">Buscar</button>
   </form>
-  <hr>
+
+  <br>
   
+  {% if q %}
+    {% if result.hits.total == 0 %}
+    <p>Sua pesquisa por <strong>"{{ q }}"</strong> não retornou nenhum resultado.</p>
+    {% else %}
+    <p>Sua pesquisa por <strong>"{{ q }}"</strong> retornou <strong>{{ result.hits.total }}</strong> resultados.</p>
+    {% endif %}
+  {% endif %}
+
   <div class="row">
     {% for recipe in result.hits.hits %}
-    <div class="col-sm-6 col-md-4">
+    <div class="col-md-4">
       <div class="thumbnail">
         <img src="{{ recipe._source.image }}" alt="{{ recipe._source.name }}">
         <div class="caption">
-          <p><strong>{{ recipe._source.name }}</strong></p>
+          <p><strong>{{ recipe._source.name|truncate(40) }}</strong></p>
           <p><a href="{{ recipe._source.url }}" class="btn btn-primary" role="button" target="_blank">Link</a></p>
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
+
+  <nav>
+    <ul class="pagination pagination-lg">
+      {% if paginator.previous %}
+      <li>
+        <a href="/?q={{ q }}&page={{ paginator.previous }}" aria-label="Anterior">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %}
+      {% for page in paginator.range %}
+      <li {% if page == paginator.current %}class="active"{% endif %}><a href="/?q={{ q }}&page={{ page }}">{{ page }}</a></li>
+      {% endfor %}
+      {% if paginator.next %}
+      <li>
+        <a href="/?q={{ q }}&page={{ paginator.next }}" aria-label="Próximo">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
   
 </div>
 {% endblock %}
